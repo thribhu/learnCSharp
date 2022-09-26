@@ -58,6 +58,7 @@ namespace LearnCSharp
             else
             {
                 this._employee.weekRate = rate * 5 * 4;
+                Console.WriteLine($"{_employee.realName?[0]}\'s week rate is now ${_employee.weekRate}CAD");
             }
             if (this._employee.weekRate > 0) { return true; }
             else return false;
@@ -72,6 +73,61 @@ namespace LearnCSharp
                 Console.WriteLine(i);
             }
 
+        }
+    }
+
+    public class Team
+    {
+        public enum TeamStatus
+        {
+            Active,
+            Inactive
+        }
+        public string Id { get; private set; }
+        public List<Employee>? TeamEmployees { get; set; }
+        public string? Name { get; set; }
+        public TeamStatus Status { get; private set; }
+
+
+        public Team(string name)
+        {
+            //generate random id in string format
+            Random generator = new Random();
+            this.Id = generator.Next(0, 1000000).ToString("D6");
+            this.TeamEmployees = new List<Employee>();
+            this.Name = name;
+            this.Status = TeamStatus.Active;
+            Console.WriteLine($"A new Team {Name}, id {Id} ");
+        }
+
+        public  void AddEmployeeToTeam(Employee member)
+        {
+            if (member == null) { return; }
+            TeamEmployees?.Add(member);
+        }
+
+        public  int CountTeamMembers()
+        {
+            return TeamEmployees?.Count ?? 0;
+        }
+
+        public  void PrintTeamMemebers()
+        {
+            if(!TeamEmployees.Any()) { return; }
+            foreach(Employee member in TeamEmployees)
+            {
+                member.ShareEmployeeGreeting("Sharon");
+            }
+        }
+
+        public void UpdateHourRateAmongTeam(double hours, double? rate)
+        {
+            if (hours < 0) return;
+            for (int i = 0; i < TeamEmployees?.Count; i++)
+            {
+                Employee member = TeamEmployees[i];
+                member.setHourRate(rate ?? 13.84, hours: 20);
+            }
         }
     }
 }
