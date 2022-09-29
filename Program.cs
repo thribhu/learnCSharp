@@ -7,8 +7,8 @@ namespace LearnCSharp
     class Program
     {
         static void Main(string[] args)
+              {
 
-        {
             /*
             var employee1 = new EmpDTO() {
                 age = 28
