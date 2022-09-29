@@ -9,6 +9,7 @@ namespace LearnCSharp
         static void Main(string[] args)
 
         {
+            /*
             var employee1 = new EmpDTO() {
                 age = 28
             };
@@ -31,6 +32,18 @@ namespace LearnCSharp
             //string interpolation
             Console.WriteLine($"Current team size: {teamSize}");
             alphaTeam.UpdateHourRateAmongTeam(hours: 6, rate: 12.55);
+            */
+
+
+
+            Option AddExpense = new Option(action: "Add Expense", selected: () => Console.Write("Hi"));
+            Option ListExpenses = new Option(action: "List Expense", selected: () => Console.Write("Hi"));
+
+            var MenuOptions = new List<Option> { AddExpense, ListExpenses };
+            //create menu with options
+            var ConsoleMenu = new Menu(MenuOptions);
+
+            ConsoleMenu.ShowOptionOnConsole();
         }
     }
 }
