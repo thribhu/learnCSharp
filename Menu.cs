@@ -13,9 +13,9 @@ namespace LearnCSharp
         public readonly Action? Selected;
 
       
-        public Option(string action, Action? selected)
+        public Option(string actionName, Action? selected)
         {
-            ActionName = action;
+            ActionName = actionName;
             Selected = selected;
         }
     }
@@ -25,6 +25,7 @@ namespace LearnCSharp
         
         public Menu (List<Option> options)
         {
+            //NOTE!Using foreach, console write all the options actionName
             //appending the options to MenuOptions
             Console.WriteLine("Adding a new option");
             MenuOptions = new List<Option>(options);
@@ -34,8 +35,9 @@ namespace LearnCSharp
         public void RemoveMenuOption(Option option) { MenuOptions?.Remove(option); }
 
      
-        public void ShowOptionOnConsole()
+        public void ShowOptionsOnConsole()
         {
+            //test check 
             if(MenuOptions == null) return;
             // Set the default index of the selected item to be the first
             int index = 0;
@@ -86,14 +88,14 @@ namespace LearnCSharp
             {
                 if (option == selectedOption)
                 {
-                    Console.Write(">");
+                    Console.Write("\t>");
                 }
                 else
                 {
-                    Console.Write(" ");
+                    Console.Write("\t");
                 }
 
-                Console.WriteLine("  "+option.ActionName);
+                Console.WriteLine("\t"+option.ActionName);
             }
         }
     }

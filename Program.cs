@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System;
-
+using System.Runtime.CompilerServices;
 
 namespace LearnCSharp
 {
@@ -34,16 +34,33 @@ namespace LearnCSharp
             alphaTeam.UpdateHourRateAmongTeam(hours: 6, rate: 12.55);
             */
 
+            StartMenu();
 
+        }
+        public static void StartMenu() {
+            Option AddExpense = new Option(actionName: "Add Expense", selected: () =>
+            {
+                var ExpenseToAdd = new Expense();
+                ExpenseToAdd.ValidExpense();
+                ExpenseToAdd.ListExpenses();
+            });
+            Option ListExpenses = new Option(actionName: "List Expense", selected: () =>
+            {
+                Console.Write('H');
+            });
+            Option UpdateExpense = new Option(actionName: "Update Expense", selected: () => Console.Write("Hi"));
+            Option Exit = new Option(actionName: "Exit", selected: () => Environment.Exit(0));
 
-            Option AddExpense = new Option(action: "Add Expense", selected: () => Console.Write("Hi"));
-            Option ListExpenses = new Option(action: "List Expense", selected: () => Console.Write("Hi"));
-
-            var MenuOptions = new List<Option> { AddExpense, ListExpenses };
+            var MenuOptions = new List<Option> { AddExpense, ListExpenses, UpdateExpense, Exit };
             //create menu with options
             var ConsoleMenu = new Menu(MenuOptions);
 
-            ConsoleMenu.ShowOptionOnConsole();
+            ConsoleMenu.ShowOptionsOnConsole();
         }
+
+        public static void CreateOption(string actionName, Action selected)
+        {
+        }
+
     }
 }
